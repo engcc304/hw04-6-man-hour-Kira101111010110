@@ -31,11 +31,10 @@
 #include <string.h>
 
 int main() {
-    char employeeId[10] ;
+    char employeeId[11] ;
     float hoursWorked, hourlyRate ;
-
     printf( "Input the Employees ID(Max. 10 chars): \n" ) ;
-    scanf( "%s", &employeeId ) ;
+    scanf( "%s", employeeId ) ;
     printf( "Input the working hrs: \n" ) ;
     scanf( "%f", &hoursWorked ) ;
     printf( "Salary amount/hr: \n" ) ;
