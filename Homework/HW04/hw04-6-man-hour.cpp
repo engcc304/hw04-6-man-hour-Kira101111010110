@@ -27,85 +27,30 @@
         Salary = U$ 374,000.00
 */
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
+void commaprint(int number) {
+    if ( number < 1000 ) {
+        printf( "%d", number ) ;
+        return ;
+    }
+    commaprint( number / 1000 );
+    printf( ",%03d", number % 1000 );
+}
 int main() {
-    char employeeId[11] ;
-    float hoursWorked, hourlyRate ;
-    printf( "Input the Employees ID(Max. 10 chars): \n" ) ;
-    scanf( "%s", employeeId ) ;
-    printf( "Input the working hrs: \n" ) ;
-    scanf( "%f", &hoursWorked ) ;
-    printf( "Salary amount/hr: \n" ) ;
-    scanf( "%f", &hourlyRate ) ;
-
-    float salary = hoursWorked * hourlyRate;
-    printf( "Expected Output: \n" ) ;
-    printf( "Employee ID = %s\n", employeeId ) ;
-    printf( "Salary = U$ " ) ;
-
-    char num[100];
-    sprintf( num, "%.2f", salary ) ;
-
-    int size = strlen( num ) ;
-    int zise = 0 ;
-    int count = 0, dot = 0, x = 0 ;
-
-    for ( x = 0 ; x < size ; x++ ) {
-        if (num[x] == '.') {
-            dot = x ;
-            while ( count < size - x - 1 ) {
-                count++; 
-            } // end while
-        } // end if
-    } // end for
-    if (count > 0) {
-        zise = size - count ;
-        zise-- ;
-    } else {
-        zise = size ; 
-    } //end else
-    if (zise < 4) {
-        for ( x = 0 ; x < zise ; x++ ) {
-            printf( "%c", num[x] ) ;
-        } // end for
-    } // end if
-    if ( zise > 3 ) {
-        if ( zise % 3 == 1 ) {
-            for ( x = 0 ; x < zise ; x++ ) {
-                printf( "%c", num[x] ) ;
-                if ( ( zise - x ) % 3 == 1 && x != zise - 1 ) {
-                    printf( "," ) ;
-                } // end if
-            } // end for
-        } // end if
-        if ( zise % 3 == 2 ) {
-            for ( x = 0 ; x < zise ; x++ ) {
-                printf( "%c", num[x] ) ;
-                if ( ( zise - x ) % 3 == 1 && x != zise - 1 ) {
-                    printf( "," ) ;
-                } // end if
-            } // end for
-        } // end if
-        if ( zise % 3 == 0 ) {
-            for ( x = 0 ; x < zise ; x++ ) {
-                printf( "%c", num[x] ) ;
-                if ( ( zise - x ) % 3 == 1 && x != zise - 1 ) {
-                    printf( "," ) ;
-                } // end if
-            } // end for
-        } // end if
-    } // end if
-    if ( num[dot] == '.' ) {
-        if ( num[dot + 4] >= 53 && num[dot + 4] <= 58 ) {
-            num[dot + 3]++;
-        } // end if 
-    } // end if 
-    printf( "." ) ;
-    for ( x = dot + 1 ; x <= dot + 2 && x < size ; x++ ) {
-        printf( "%c", num[x] ) ;
-    } // end for 
-    printf( "\n" ) ;
-    return 0 ;
-} // end main function
+    char id[10];
+    float timework;
+    float money;
+    printf("Input the Employees ID (Max. 10 chars):\n");
+    scanf("%s", id);
+    printf("Input the working hrs:\n");
+    scanf("%f", &timework);
+    printf("Salary amount/hr:\n");
+    scanf("%f", &money);
+    float sum;
+    sum = timework * money;
+    printf("Expected Output:\nEmployees ID = %s\n", id);
+    printf("Salary = U$ ");
+    commaprint((int)sum);
+    printf(".%02d", (int)(sum * 100) % 100);
+    return 0;
+}
